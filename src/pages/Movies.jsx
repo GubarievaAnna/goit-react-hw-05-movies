@@ -17,7 +17,8 @@ function Movies() {
     fetchSearchMovies(normalizedKeyWord)
       .then(data => {
         if (data.length === 0) {
-          toast.warn(
+          setMovies([]);
+          toast.error(
             'Sorry, there are no images matching your search query. Please try again.',
             {
               autoClose: 2000,
@@ -34,7 +35,7 @@ function Movies() {
   return (
     <Section>
       <Searchbar onSubmitSearch={onSubmitSearch} />
-      {movies && <MoviesList movies={movies} />}
+      {movies && movies.length > 0 && <MoviesList movies={movies} />}
     </Section>
   );
 }
