@@ -1,4 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navigation from './Navigation/Navigation';
 import Home from '../pages/Home';
 import Movies from '../pages/Movies';
@@ -8,6 +10,7 @@ export const App = () => {
   return (
     <>
       <Navigation />
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="movies" element={<Movies />}>

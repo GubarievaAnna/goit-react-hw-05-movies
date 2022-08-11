@@ -3,11 +3,10 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 const API_KEY = '42d9e788e3438c5863a342fbee36edd9';
 
-export const fetchSearchMovies = (query, page) => {
+export const fetchSearchMovies = (query) => {
   axios.defaults.params = {
     api_key: API_KEY,
     query: query,
-    page: page,
     language: 'en-US',
     include_adult: false,
   };
