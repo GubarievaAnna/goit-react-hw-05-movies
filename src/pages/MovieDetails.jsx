@@ -2,6 +2,7 @@ import { Outlet, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovieById } from '../utils/Api';
 import MovieInfo from '../components/MovieInfo/MovieInfo';
+import Section from 'components/Section/Section';
 
 function MovieDetails() {
   const [info, setInfo] = useState();
@@ -17,8 +18,7 @@ function MovieDetails() {
 
   return (
     <>
-      <button>Go back</button>
-      {info && <MovieInfo info={info} />}
+      <Section>{info && <MovieInfo info={info} />}</Section>
       <Outlet />
     </>
   );

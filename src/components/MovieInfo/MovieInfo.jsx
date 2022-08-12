@@ -1,6 +1,5 @@
-import Section from 'components/Section/Section';
-import { NavLink } from 'react-router-dom';
 import placeholder from '../../images/not-found.png';
+import { NavLink } from 'react-router-dom';
 
 function MovieInfo({ info }) {
   const {
@@ -17,7 +16,8 @@ function MovieInfo({ info }) {
   const normalizedGenres = genres.map(el => el.name).join(', ');
 
   return (
-    <Section>
+    <>
+      <button>Go back</button>
       <img
         src={
           poster_path
@@ -33,7 +33,7 @@ function MovieInfo({ info }) {
       <p>Additional information</p>
       <NavLink to="cast">Cast</NavLink>
       <NavLink to="reviews">Reviews</NavLink>
-    </Section>
+    </>
   );
 }
 

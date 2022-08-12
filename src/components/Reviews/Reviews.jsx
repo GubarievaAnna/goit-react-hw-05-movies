@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovieReviews } from '../../utils/Api';
+import Section from '../Section/Section';
 
 function Reviews() {
   const [reviews, setReviews] = useState();
@@ -15,19 +16,22 @@ function Reviews() {
 
   return (
     <>
-      {reviews && reviews.length > 0 ? (
-        <ul>
-          {reviews.map(el => (
-            <li key={el.id}>
-              <p>Author: {el.author}</p>
-              {el.content}
-              <p></p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <div>We don't have any reviews for this movie</div>
-      )}
+      <Section>
+        <h3 className="visually-hidden">Reviews</h3>
+        {reviews && reviews.length > 0 ? (
+          <ul>
+            {reviews.map(el => (
+              <li key={el.id}>
+                <p>Author: {el.author}</p>
+                {el.content}
+                <p></p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div>We don't have any reviews for this movie</div>
+        )}
+      </Section>
     </>
   );
 }

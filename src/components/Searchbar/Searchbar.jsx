@@ -22,22 +22,20 @@ const Searchbar = ({ onSubmitSearch }) => {
   };
 
   return (
-    <header className={s.searchbar}>
-      <form className={s.form} onSubmit={onSubmitForm}>
-        <button type="submit" className={s.button} aria-label="search">
-          <ImSearch />
-        </button>
-        <input
-          className={s.input}
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search movies"
-          value={input}
-          onChange={onInputKey}
-        />
-      </form>
-    </header>
+    <form className={s.form} onSubmit={onSubmitForm}>
+      <button type="submit" className={s.button} aria-label="search">
+        <ImSearch />
+      </button>
+      <input
+        className={s.input}
+        type="text"
+        autoComplete="off"
+        autoFocus
+        placeholder="Search movies"
+        value={input}
+        onChange={onInputKey}
+      />
+    </form>
   );
 };
 
