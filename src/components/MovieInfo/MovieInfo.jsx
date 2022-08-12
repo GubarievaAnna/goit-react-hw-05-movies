@@ -1,5 +1,6 @@
 import placeholder from '../../images/not-found.png';
 import { NavLink } from 'react-router-dom';
+import s from './MovieInfo.module.css';
 
 function MovieInfo({ info }) {
   const {
@@ -17,22 +18,43 @@ function MovieInfo({ info }) {
 
   return (
     <>
-      <button>Go back</button>
-      <img
-        src={
-          poster_path
-            ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-            : placeholder
-        }
-        alt={`Poster of movie ${original_title}`}
-      />
-      <h2>{`${original_title} (${normalizedYearOfMovie})`}</h2>
-      <p>User score: {normalizedUserScore}%</p>
-      <p>Overview: {overview}</p>
-      <p>Genres: {normalizedGenres}</p>
-      <p>Additional information</p>
-      <NavLink to="cast">Cast</NavLink>
-      <NavLink to="reviews">Reviews</NavLink>
+      <button className={s.button}>Go back</button>
+      <div className={s.info}>
+        <img
+          className={s.picture}
+          src={
+            poster_path
+              ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+              : placeholder
+          }
+          alt={`Poster of movie ${original_title}`}
+        />
+        <div className={s.text}>
+          <h2
+            className={s.title}
+          >{`${original_title} (${normalizedYearOfMovie})`}</h2>
+          <p className={s.text}>
+            <span className={s.accent}>User score:</span> {normalizedUserScore}%
+          </p>
+          <p className={s.text}>
+            <span className={s.accent}>Overview:</span> {overview}
+          </p>
+          <p className={s.text}>
+            <span className={s.accent}>Genres:</span> {normalizedGenres}
+          </p>
+        </div>
+      </div>
+      <div className={s.moreInfo}>
+        <p className={s.moreTitle}>Additional information</p>
+        <ul>
+          <li className={s.item}>
+            <NavLink to="cast">Cast</NavLink>
+          </li>
+          <li className={s.item}>
+            <NavLink to="reviews">Reviews</NavLink>
+          </li>
+        </ul>
+      </div>
     </>
   );
 }

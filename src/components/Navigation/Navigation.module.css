@@ -1,15 +1,25 @@
-.mainNav {
+.nav {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #5d8aa8;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .link {
+  font-size: 22px;
+  color: #00008b;
+  padding: 10px 35px;
+  background-color: #fff;
+  border: 1px solid rgba(154, 147, 140, 0.5);
+  border-radius: 5px;
   text-decoration: none;
-  font-family: sans-serif;
-  color: #5757a0;
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: lavender;
-  border-bottom: 5px solid #5757a0;
 }
+.link:not(:last-child) {
+  margin-right: 15px;
+}
+
 .activeLink {
   composes: link;
   color: red;

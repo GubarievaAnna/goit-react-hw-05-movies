@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovieReviews } from '../../utils/Api';
-import Section from '../Section/Section';
+import s from './Reviews.module.css';
+import SectionMoreInfo from 'components/SectionMoreInfo/SectionMoreInfo';
 
 function Reviews() {
   const [reviews, setReviews] = useState();
   const { movieId } = useParams();
-  console.log(movieId);
 
   useEffect(() => {
     fetchMovieReviews(movieId)
@@ -15,24 +15,20 @@ function Reviews() {
   }, [movieId]);
 
   return (
-    <>
-      <Section>
-        <h3 className="visually-hidden">Reviews</h3>
-        {reviews && reviews.length > 0 ? (
-          <ul>
-            {reviews.map(el => (
-              <li key={el.id}>
-                <p>Author: {el.author}</p>
-                {el.content}
-                <p></p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div>We don't have any reviews for this movie</div>
-        )}
-      </Section>
-    </>
+    <SectionMoreInfo title="Reviews">
+      {reviews && reviews.length > 0 ? (
+        <ul>
+          {reviews.map(el => (
+            <li key={el.id} className={s.item}>
+              <p className={s.author}>{` Author: ${el.author}`}</p>
+              <p className={s.text}>{el.content}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className={s.noInfo}>We don't have any reviews for this movie</div>
+      )}
+    </SectionMoreInfo>
   );
 }
 
