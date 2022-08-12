@@ -1,4 +1,4 @@
-import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import placeholder from '../../images/not-found.png';
 import s from './MovieInfo.module.css';
@@ -35,7 +35,7 @@ function MovieInfo({ info }) {
           }
           alt={`Poster of movie ${original_title}`}
         />
-        <div className={s.text}>
+        <div className={s.textContent}>
           <h2
             className={s.title}
           >{`${original_title} (${normalizedYearOfMovie})`}</h2>
@@ -49,29 +49,6 @@ function MovieInfo({ info }) {
             <span className={s.accent}>Genres:</span> {normalizedGenres}
           </p>
         </div>
-      </div>
-      <div className={s.moreInfo}>
-        <p className={s.moreTitle}>Additional information</p>
-        <ul>
-          <li className={s.item}>
-            <NavLink
-              to="cast"
-              className={({ isActive }) => (isActive ? s.activeLink : s.link)}
-              state={location.state}
-            >
-              Cast
-            </NavLink>
-          </li>
-          <li className={s.item}>
-            <NavLink
-              to="reviews"
-              state={location.state}
-              className={({ isActive }) => (isActive ? s.activeLink : s.link)}
-            >
-              Reviews
-            </NavLink>
-          </li>
-        </ul>
       </div>
     </>
   );

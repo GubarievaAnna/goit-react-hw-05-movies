@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { fetchMovieById } from '../utils/Api';
 import MovieInfo from '../components/MovieInfo/MovieInfo';
 import Section from 'components/Section/Section';
+import MovieAddInfo from 'components/MovieAddInfo/MovieAddInfo';
 
 function MovieDetails() {
   const [info, setInfo] = useState();
@@ -18,7 +19,10 @@ function MovieDetails() {
 
   return (
     <>
-      <Section>{info && <MovieInfo info={info} />}</Section>
+      <Section>
+        {info && <MovieInfo info={info} />}
+        <MovieAddInfo />
+      </Section>
       <Outlet />
     </>
   );
