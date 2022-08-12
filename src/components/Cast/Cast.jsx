@@ -6,18 +6,26 @@ import SectionMoreInfo from 'components/SectionMoreInfo/SectionMoreInfo';
 import s from './Cast.module.css';
 
 function Cast() {
-  const [cast, setCast] = useState();
+  const [cast, setCast] = useState([]);
+  const [status, setStatus] = useState('');
   const { movieId } = useParams();
 
   useEffect(() => {
     fetchMovieCast(movieId)
-      .then(data => setCast(data))
+      .then(data => {
+        if (data.length === 0) {
+          setStatus('rejected');
+          return;
+        }
+        setCast(data);
+        setStatus('resolved');
+      })
       .catch(error => console.log(error));
   }, [movieId]);
 
   return (
     <SectionMoreInfo title="Cast">
-      {cast && cast.length > 0 ? (
+      {status === 'resolved' && (
         <ul className={s.list}>
           {cast.map(el => (
             <li key={el.id} className={s.item}>
@@ -34,7 +42,8 @@ function Cast() {
             </li>
           ))}
         </ul>
-      ) : (
+      )}
+      {status === 'rejected' && (
         <div className={s.noInfo}>
           Sorry, we don't have information about cast of this movie
         </div>

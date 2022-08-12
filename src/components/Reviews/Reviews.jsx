@@ -5,18 +5,26 @@ import s from './Reviews.module.css';
 import SectionMoreInfo from 'components/SectionMoreInfo/SectionMoreInfo';
 
 function Reviews() {
-  const [reviews, setReviews] = useState();
+  const [reviews, setReviews] = useState([]);
+  const [status, setStatus] = useState('');
   const { movieId } = useParams();
 
   useEffect(() => {
     fetchMovieReviews(movieId)
-      .then(data => setReviews(data))
+      .then(data => {
+        if (data.length === 0) {
+          setStatus('rejected');
+          return;
+        }
+        setReviews(data);
+        setStatus('resolved');
+      })
       .catch(error => console.log(error));
   }, [movieId]);
 
   return (
     <SectionMoreInfo title="Reviews">
-      {reviews && reviews.length > 0 ? (
+      {status === 'resolved' && (
         <ul>
           {reviews.map(el => (
             <li key={el.id} className={s.item}>
@@ -25,8 +33,12 @@ function Reviews() {
             </li>
           ))}
         </ul>
-      ) : (
-        <div className={s.noInfo}>We don't have any reviews for this movie</div>
+      )}
+      {status === 'rejected' && (
+        <div className={s.noInfo}>
+          {' '}
+          We don't have any reviews for this movie{' '}
+        </div>
       )}
     </SectionMoreInfo>
   );
