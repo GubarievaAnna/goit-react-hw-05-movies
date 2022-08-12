@@ -10,7 +10,7 @@ function Movies() {
   const [keyWord, setKeyWord] = useState('');
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const onSubmitSearch = key => {
     const normalizedKeyWord = key.toLowerCase().trim();
