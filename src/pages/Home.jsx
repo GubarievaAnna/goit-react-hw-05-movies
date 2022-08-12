@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchTrendingMovies } from '../utils/Api';
-import Section from 'components/Section/Section';
-import MoviesList from 'components/MoviesList/MoviesList';
+import Section from '../components/Section/Section';
+import TrendingList from '../components/TrendingList/TrendingList';
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -16,7 +16,7 @@ function Home() {
 
   return (
     <Section title="Trending today">
-      {movies && <MoviesList movies={movies} />}
+      {movies && <TrendingList movies={movies} />}
     </Section>
   );
 }

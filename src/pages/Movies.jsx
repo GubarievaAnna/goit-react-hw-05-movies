@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { fetchSearchMovies } from '../utils/Api';
-import Searchbar from 'components/Searchbar/Searchbar';
-import MoviesList from 'components/MoviesList/MoviesList';
-import Section from 'components/Section/Section';
+import Searchbar from '../components/Searchbar/Searchbar';
+import Section from '../components/Section/Section';
+import SearchList from '../components/SearchList/SearchList';
 
 function Movies() {
   const [keyWord, setKeyWord] = useState('');
@@ -19,7 +19,7 @@ function Movies() {
         if (data.length === 0) {
           setMovies([]);
           toast.error(
-            'Sorry, there are no images matching your search query. Please try again.',
+            'Sorry, there are no movies matching your search query. Please try again.',
             {
               autoClose: 2000,
               theme: 'colored',
@@ -35,7 +35,7 @@ function Movies() {
   return (
     <Section>
       <Searchbar onSubmitSearch={onSubmitSearch} />
-      {movies && movies.length > 0 && <MoviesList movies={movies} />}
+      {movies && movies.length > 0 && <SearchList movies={movies} />}
     </Section>
   );
 }
