@@ -15,7 +15,7 @@ function Cast() {
 
   return (
     <>
-      {cast && cast.length > 0 && (
+      {cast && cast.length > 0 ? (
         <ul>
           {cast.map(el => (
             <li key={el.id}>
@@ -25,13 +25,15 @@ function Cast() {
                     ? `https://image.tmdb.org/t/p/w500/${el.profile_path}`
                     : placeholder
                 }
-                alt={`Photo of ${el.name}`}
+                alt={el.name}
               />
               <p>{el.name}</p>
               <p>Character: {el.character}</p>
             </li>
           ))}
         </ul>
+      ) : (
+        <div>Sorry, we don't have information about cast of this movie</div>
       )}
     </>
   );
