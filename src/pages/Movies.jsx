@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { fetchSearchMovies } from '../utils/Api';
 import Searchbar from '../components/Searchbar/Searchbar';
 import Section from '../components/Section/Section';
-import SearchList from '../components/SearchList/SearchList';
+import MoviesList from '../components/MoviesList/MoviesList';
 
 function Movies() {
   const [keyWord, setKeyWord] = useState('');
@@ -35,7 +35,7 @@ function Movies() {
   return (
     <Section>
       <Searchbar onSubmitSearch={onSubmitSearch} />
-      {movies && movies.length > 0 && <SearchList movies={movies} />}
+      {movies && movies.length > 0 && <MoviesList movies={movies} />}
     </Section>
   );
 }

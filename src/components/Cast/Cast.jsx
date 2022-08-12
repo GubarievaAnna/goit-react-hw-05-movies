@@ -35,7 +35,9 @@ function Cast() {
           ))}
         </ul>
       ) : (
-        <div>Sorry, we don't have information about cast of this movie</div>
+        <div className={s.noInfo}>
+          Sorry, we don't have information about cast of this movie
+        </div>
       )}
     </SectionMoreInfo>
   );
