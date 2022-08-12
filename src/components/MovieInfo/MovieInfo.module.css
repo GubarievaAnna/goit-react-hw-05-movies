@@ -9,10 +9,10 @@
   cursor: pointer;
 }
 
-.button:active {
+.button:hover,
+.button:focus {
   scale: 1.2;
-  background-color: #5d8aa8;
-  font-weight: 700;
+  background-color: #13b3ff;
 }
 
 .info {
@@ -22,7 +22,7 @@
 }
 
 .picture {
-  max-width: 200px;
+  max-width: 220px;
   margin-right: 25px;
 }
 .title {
@@ -41,8 +41,8 @@
 .moreInfo {
   padding-top: 20px;
   padding-bottom: 20px;
-  border-top: 1px solid #5d8aa8;
-  border-bottom: 1px solid #5d8aa8;
+  border-top: 1px solid #13b3ff;
+  border-bottom: 1px solid #13b3ff;
 }
 
 .moreTitle {
@@ -51,4 +51,13 @@
 
 .item:not(:last-child) {
   margin-bottom: 5px;
+}
+
+.link {
+  color: #000;
+}
+
+.activeLink {
+  composes: link;
+  font-weight: 700;
 }

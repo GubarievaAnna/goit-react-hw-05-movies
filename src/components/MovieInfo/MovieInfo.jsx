@@ -1,8 +1,11 @@
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import placeholder from '../../images/not-found.png';
-import { NavLink, useNavigate } from 'react-router-dom';
 import s from './MovieInfo.module.css';
 
 function MovieInfo({ info }) {
+  const location = useLocation();
+
   const navigate = useNavigate();
   const {
     overview,
@@ -13,17 +16,13 @@ function MovieInfo({ info }) {
     original_title,
   } = info;
 
-  const onPrevPageGo = () => {
-    navigate(-1);
-  };
-
   const normalizedUserScore = (vote_average * 10).toFixed(0);
   const normalizedYearOfMovie = release_date.split('-')[0];
   const normalizedGenres = genres.map(el => el.name).join(', ');
 
   return (
     <>
-      <button className={s.button} onClick={onPrevPageGo}>
+      <button className={s.button} onClick={() => navigate(location.state)}>
         Go back
       </button>
       <div className={s.info}>
@@ -55,15 +54,38 @@ function MovieInfo({ info }) {
         <p className={s.moreTitle}>Additional information</p>
         <ul>
           <li className={s.item}>
-            <NavLink to="cast">Cast</NavLink>
+            <NavLink
+              to="cast"
+              className={({ isActive }) => (isActive ? s.activeLink : s.link)}
+              state={location.state}
+            >
+              Cast
+            </NavLink>
           </li>
           <li className={s.item}>
-            <NavLink to="reviews">Reviews</NavLink>
+            <NavLink
+              to="reviews"
+              state={location.state}
+              className={({ isActive }) => (isActive ? s.activeLink : s.link)}
+            >
+              Reviews
+            </NavLink>
           </li>
         </ul>
       </div>
     </>
   );
 }
+
+MovieInfo.propTypes = {
+  info: PropTypes.shape({
+    overview: PropTypes.string,
+    vote_average: PropTypes.number,
+    genres: PropTypes.array,
+    poster_path: PropTypes.string,
+    release_date: PropTypes.string,
+    original_title: PropTypes.string,
+  }),
+};
 
 export default MovieInfo;

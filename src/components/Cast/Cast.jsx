@@ -37,8 +37,12 @@ function Cast() {
                 }
                 alt={el.name}
               />
-              <p className={s.name}>{el.name}</p>
-              <p className={s.character}>Character: {el.character}</p>
+              <p className={s.name}>
+                <span className={s.accent}>Name:</span> {el.name}
+              </p>
+              <p className={s.character}>
+                <span className={s.accent}>Character:</span> {el.character}
+              </p>
             </li>
           ))}
         </ul>

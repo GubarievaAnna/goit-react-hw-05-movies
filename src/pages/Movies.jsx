@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { fetchSearchMovies } from '../utils/Api';
@@ -10,13 +10,18 @@ function Movies() {
   const [keyWord, setKeyWord] = useState('');
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const onSubmitSearch = key => setKeyWord(key);
+  const onSubmitSearch = key => {
+    const normalizedKeyWord = key.toLowerCase().trim();
+    setKeyWord(normalizedKeyWord);
+    navigate(`?query=${normalizedKeyWord}`);
+  };
 
   useEffect(() => {
-    if (keyWord === '') return;
-    const normalizedKeyWord = keyWord.toLowerCase().trim();
-    fetchSearchMovies(normalizedKeyWord)
+    const key = searchParams.get('query');
+    if (!key) return;
+    fetchSearchMovies(key)
       .then(data => {
         if (data.length === 0) {
           setMovies([]);
@@ -31,12 +36,8 @@ function Movies() {
         }
         setMovies(data);
       })
-      .catch(error => console.log(error))
-      .finally(() => {
-        navigate(`?query=${normalizedKeyWord}`);
-      });
-    // eslint-disable-next-line
-  }, [keyWord]);
+      .catch(error => console.log(error));
+  }, [keyWord, searchParams]);
 
   return (
     <Section>

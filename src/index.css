@@ -25,7 +25,15 @@ p {
 
 ul {
   margin: 0;
+  list-style-type: disclosure-closed;
 }
+
+/* a,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+} */
+
 .container {
   margin-left: auto;
   margin-right: auto;

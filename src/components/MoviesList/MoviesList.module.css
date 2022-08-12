@@ -1,4 +1,19 @@
-.link {
-  font-size: 14px;
+.list {
+  color: #13b3ff;
+}
+
+.item {
   margin-bottom: 5px;
+}
+
+.link,
+.link:visited {
+  font-size: 14px;
+  text-decoration: none;
+  color: #13b3ff;
+}
+
+.link:hover,
+.link:focus {
+  font-weight: 700;
 }

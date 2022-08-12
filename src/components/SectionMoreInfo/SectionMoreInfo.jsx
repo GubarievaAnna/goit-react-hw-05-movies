@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import s from './SectionMoreInfo.module.css';
 
 function SectionMoreInfo({ title, children }) {
@@ -10,5 +11,9 @@ function SectionMoreInfo({ title, children }) {
     </section>
   );
 }
+
+SectionMoreInfo.propTypes = {
+  title: PropTypes.string,
+};
 
 export default SectionMoreInfo;
