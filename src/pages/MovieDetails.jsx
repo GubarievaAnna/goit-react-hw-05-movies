@@ -1,7 +1,9 @@
 import { Outlet, useParams } from 'react-router-dom';
+import { Suspense } from 'react';
 import { useState, useEffect } from 'react';
 import { fetchMovieById } from '../utils/Api';
 import MovieInfo from '../components/MovieInfo/MovieInfo';
+import Loader from 'components/Loader/Loader';
 import Section from 'components/Section/Section';
 import MovieAddInfo from 'components/MovieAddInfo/MovieAddInfo';
 
@@ -23,7 +25,9 @@ function MovieDetails() {
         {info && <MovieInfo info={info} />}
         <MovieAddInfo />
       </Section>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 }
