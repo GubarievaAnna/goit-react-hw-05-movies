@@ -22,7 +22,10 @@ function MovieInfo({ info }) {
 
   return (
     <>
-      <button className={s.button} onClick={() => navigate(location.state)}>
+      <button
+        className={s.button}
+        onClick={() => navigate(location.state ?? '/')}
+      >
         Go back
       </button>
       <div className={s.info}>
