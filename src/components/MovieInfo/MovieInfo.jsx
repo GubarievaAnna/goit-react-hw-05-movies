@@ -1,8 +1,9 @@
 import placeholder from '../../images/not-found.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import s from './MovieInfo.module.css';
 
 function MovieInfo({ info }) {
+  const navigate = useNavigate();
   const {
     overview,
     vote_average,
@@ -12,13 +13,19 @@ function MovieInfo({ info }) {
     original_title,
   } = info;
 
+  const onPrevPageGo = () => {
+    navigate(-1);
+  };
+
   const normalizedUserScore = (vote_average * 10).toFixed(0);
   const normalizedYearOfMovie = release_date.split('-')[0];
   const normalizedGenres = genres.map(el => el.name).join(', ');
 
   return (
     <>
-      <button className={s.button}>Go back</button>
+      <button className={s.button} onClick={onPrevPageGo}>
+        Go back
+      </button>
       <div className={s.info}>
         <img
           className={s.picture}

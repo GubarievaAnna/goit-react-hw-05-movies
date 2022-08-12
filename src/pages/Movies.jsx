@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { fetchSearchMovies } from '../utils/Api';
@@ -8,6 +9,7 @@ import MoviesList from '../components/MoviesList/MoviesList';
 function Movies() {
   const [keyWord, setKeyWord] = useState('');
   const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
 
   const onSubmitSearch = key => setKeyWord(key);
 
@@ -29,7 +31,11 @@ function Movies() {
         }
         setMovies(data);
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error))
+      .finally(() => {
+        navigate(`?query=${normalizedKeyWord}`);
+      });
+    // eslint-disable-next-line
   }, [keyWord]);
 
   return (

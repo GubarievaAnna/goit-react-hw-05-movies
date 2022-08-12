@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import s from './MoviesList.module.css';
 
-function TrendingList({ movies }) {
+function MovieList({ movies }) {
   return (
     <ul>
       {movies.map(el => (
@@ -13,4 +13,4 @@ function TrendingList({ movies }) {
   );
 }
 
-export default TrendingList;
+export default MovieList;
