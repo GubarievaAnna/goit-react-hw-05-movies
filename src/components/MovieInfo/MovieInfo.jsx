@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import placeholder from '../../images/not-found.png';
 
 function MovieInfo({ info }) {
-  console.log(info);
   const {
     overview,
     vote_average,
