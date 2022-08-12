@@ -22,7 +22,6 @@ function Cast() {
           {cast.map(el => (
             <li key={el.id} className={s.item}>
               <img
-                className={s.photo}
                 src={
                   el.profile_path
                     ? `https://image.tmdb.org/t/p/w500/${el.profile_path}`
