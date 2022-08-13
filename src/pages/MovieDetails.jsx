@@ -23,7 +23,7 @@ function MovieDetails() {
     <>
       <Section>
         {info && <MovieInfo info={info} />}
-        <MovieAddInfo />
+        {info && <MovieAddInfo />}
       </Section>
       <Suspense fallback={<Loader />}>
         <Outlet />
